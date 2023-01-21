@@ -383,7 +383,11 @@ public class Level {
      * or {@code null} if there are not {@link Blinky} ghosts in the level.
      */
     public Blinky getBlinky() {
-        //TODO
+        for (Ghost ghost : ghostList) {
+            if (ghost instanceof Blinky) {
+                return (Blinky) ghost;
+            }
+        }
         return null;
     }
 
