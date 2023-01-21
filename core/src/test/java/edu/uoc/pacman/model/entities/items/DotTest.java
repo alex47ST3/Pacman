@@ -96,7 +96,7 @@ class DotTest {
 
         assertEquals("edu.uoc.pacman.model.entities.items", ownClass.getPackageName());
         assertTrue(MapItem.class.isAssignableFrom(ownClass));
-        assertTrue(Pickable.class.isAssignableFrom(ownClass));
+        assertTrue(Wall.class.isAssignableFrom(ownClass));
         assertTrue(Scorable.class.isAssignableFrom(ownClass));
     }
 

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PickableTest {
 
-    private final Class<Pickable> ownClass = Pickable.class;
+    private final Class<Wall> ownClass = Wall.class;
 
     @Test
     @Tag("sanity")

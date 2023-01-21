@@ -1,7 +1,6 @@
 package edu.uoc.pacman.model;
 
 import edu.uoc.pacman.model.entities.Scorable;
-import edu.uoc.pacman.model.entities.characters.ghosts.Behaviour;
 import edu.uoc.pacman.model.entities.characters.pacman.Pacman;
 import edu.uoc.pacman.model.entities.characters.ghosts.Blinky;
 import edu.uoc.pacman.model.entities.characters.ghosts.Ghost;
@@ -409,7 +408,7 @@ public class Level {
 
     /**
      * Checks if the level was finished. This happens when all the objects
-     * that are {@link Scorable} and {@link Pickable} have been picked.
+     * that are {@link Scorable} and {@link Wall} have been picked.
      *
      * @return {@code true} if the level was finished/won. Otherwise, {@code false}.
      */
