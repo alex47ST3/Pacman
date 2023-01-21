@@ -82,9 +82,14 @@ public abstract class Character extends Entity implements Movable, Hitable{
     }
 
     public void reset(){
-
+        setPosition(startPosition);
+        setDirection(Direction.UP);
+        alive();
+        setDuration(0);
     }
 
     @Override
-    public String toString(){}
+    public String toString(){
+        return getPosition().getX() + "," + getPosition().getY() + "," + getDirection().name();
+    }
 }
