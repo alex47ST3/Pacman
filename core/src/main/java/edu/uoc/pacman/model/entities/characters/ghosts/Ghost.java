@@ -13,10 +13,26 @@ public abstract class Ghost extends Character implements Scorable {
     protected ChaseBehaviour chaseBehaviour;
     private Position scatterPosition;
 
-    public Ghost(Position position, Sprite sprite, Direction direction, Level level, Behaviour behaviour, ChaseBehaviour chaseBehaviour, Position scatterPosition) {
-        super(position, sprite, direction, level);
+    protected Ghost(Position startPosition, Position scatterPosition, Direction direction,
+                               Behaviour behaviour, Sprite sprite, Level level) {
+        super(startPosition, sprite, direction, level);
+        setBehaviour(behaviour);
+        setScatterPosition(scatterPosition);
+    }
+
+    public Behaviour getBehaviour() {
+        return behaviour;
+    }
+
+    public void setBehaviour(Behaviour behaviour) {
         this.behaviour = behaviour;
-        this.chaseBehaviour = chaseBehaviour;
+    }
+
+    public ChaseBehaviour getChaseBehaviour() {
+        return chaseBehaviour;
+    }
+
+    public void setScatterPosition(Position scatterPosition) {
         this.scatterPosition = scatterPosition;
     }
 
