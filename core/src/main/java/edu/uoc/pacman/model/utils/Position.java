@@ -27,23 +27,6 @@ public class Position {
         this.y = y;
     }
 
-    @Override
-    public boolean equals(Object other){
-        if(other instanceof Position ){
-            Position position = (Position) other;
-            Boolean condition = (this.getX() == position.getX()  && this.getY() == position.getY());
-            return condition;
-        } else{
-            return false;
-        }
-
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
-
     public static Position add(Position p1, Position p2) throws NullPointerException{
 
         int x = p1.getX() + p2.getX();
@@ -64,4 +47,27 @@ public class Position {
         int distanceY = this.getY() - other.getY();
         return Math.sqrt(Math.pow( distanceX, 2) + Math.pow(distanceY, 2));
     }
+
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof Position ){
+            Position position = (Position) other;
+            Boolean condition = (this.getX() == position.getX()  && this.getY() == position.getY());
+            return condition;
+        } else{
+            return false;
+        }
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString(){
+        return getX()+","+getY();
+    }
+
 }

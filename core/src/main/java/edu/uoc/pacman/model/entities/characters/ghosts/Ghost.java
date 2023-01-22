@@ -27,7 +27,7 @@ public abstract class Ghost extends Character implements Scorable {
 
     public void setBehaviour(Behaviour behaviour) {
         if (behaviour != null) {
-            this.setBehaviour(behaviour);
+            this.behaviour=behaviour;
             this.setDuration(behaviour.getDuration());
         }
 
@@ -75,7 +75,7 @@ public abstract class Ghost extends Character implements Scorable {
 
         double minDistance = Double.MAX_VALUE;
         Direction newDirection = this.getDirection();
-        Position newPosition = this.getPosition();
+        Position newPosition;
 
         for (Direction direction : Direction.values()) {
 
@@ -94,7 +94,10 @@ public abstract class Ghost extends Character implements Scorable {
         }
 
         this.setDirection(newDirection);
-        this.setPosition(newPosition);
+
+        Position nextPosition = new Position(newDirection.getX(),newDirection.getY());
+        nextPosition = Position.add(this.getPosition(), nextPosition);
+        this.setPosition(nextPosition);
         hit();
         nextBehaviour();
 
@@ -106,7 +109,9 @@ public abstract class Ghost extends Character implements Scorable {
         State pacmanState = this.getLevel().getPacman().getState();
 
         if (this.getPosition().equals(pacmanPosition)
-                && this.getBehaviour().equals(Behaviour.FRIGHTENED)
+                && !this.getBehaviour().equals(Behaviour.INACTIVE)
+                && (this.getBehaviour().equals(Behaviour.FRIGHTENED)
+                || pacmanState.equals(State.INVINCIBLE))
         ){
             this.kill();
             return true;

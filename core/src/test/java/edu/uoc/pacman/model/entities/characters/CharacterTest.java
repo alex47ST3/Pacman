@@ -3,6 +3,8 @@ package edu.uoc.pacman.model.entities.characters;
 import edu.uoc.pacman.model.Level;
 import edu.uoc.pacman.model.entities.Entity;
 import edu.uoc.pacman.model.entities.Scorable;
+import edu.uoc.pacman.model.entities.characters.ghosts.Ghost;
+import edu.uoc.pacman.model.entities.items.Pickable;
 import edu.uoc.pacman.model.utils.Direction;
 import edu.uoc.pacman.model.utils.Position;
 import edu.uoc.pacman.model.utils.Sprite;

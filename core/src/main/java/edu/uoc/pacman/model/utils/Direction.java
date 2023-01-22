@@ -3,8 +3,8 @@ package edu.uoc.pacman.model.utils;
 public enum Direction {
 
     DOWN(0,1,20),
-    RIGHT(-1,0,21),
-    LEFT(1,0,22),
+    RIGHT(1,0,22),
+    LEFT(-1,0,21),
     UP(0,-1,19);
 
 

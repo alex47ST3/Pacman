@@ -72,15 +72,12 @@ public class Pacman extends Character {
     @Override
     public void setDirection(Direction direction) {
         super.setDirection(direction);
+
         switch (direction) {
-            case UP:
-                this.setSprite(Sprite.PACMAN_UP);
-            case DOWN:
-                this.setSprite(Sprite.PACMAN_DOWN);
-            case LEFT:
-                this.setSprite(Sprite.PACMAN_LEFT);
-            case RIGHT:
-                this.setSprite(Sprite.PACMAN_RIGHT);
+            case UP -> this.setSprite(Sprite.PACMAN_UP);
+            case DOWN -> this.setSprite(Sprite.PACMAN_DOWN);
+            case LEFT -> this.setSprite(Sprite.PACMAN_LEFT);
+            case RIGHT -> this.setSprite(Sprite.PACMAN_RIGHT);
         }
 
     }
@@ -99,12 +96,15 @@ public class Pacman extends Character {
         int newY = this.getPosition().getY() + this.getDirection().getY();
         Position newPosition = new Position(newX, newY);
 
+
         if (this.getLevel().isPathable(newPosition)) {
             this.setPosition(newPosition);
         }
 
+        this.hit();
         this.eat();
         this.nextState();
+
     }
 
     @Override
@@ -118,6 +118,9 @@ public class Pacman extends Character {
                 if (this.getPosition().equals(ghost.getPosition())) {
                     if (ghost.getBehaviour().equals(Behaviour.FRIGHTENED)) {
                         ghost.kill();
+                        return true;
+                    }else if (!ghost.getBehaviour().equals(Behaviour.INACTIVE)){
+                        this.kill();
                         return true;
                     }
                 }

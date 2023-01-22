@@ -1,6 +1,7 @@
 package edu.uoc.pacman.model;
 
 import edu.uoc.pacman.model.entities.Scorable;
+import edu.uoc.pacman.model.entities.characters.ghosts.Behaviour;
 import edu.uoc.pacman.model.entities.characters.pacman.Pacman;
 import edu.uoc.pacman.model.entities.characters.ghosts.Blinky;
 import edu.uoc.pacman.model.entities.characters.ghosts.Ghost;
@@ -80,6 +81,8 @@ public class Level {
      */
     private static final int UPDATE_GAME = 30;
 
+    // Constructor
+
     /**
      * Constructor with argument.
      *
@@ -93,13 +96,14 @@ public class Level {
         parse();
     }
 
+    // Methods
     /**
      * Setter of the attribute {@code fileName}.
      *
      * @param fileName New value for the attribute {@code fileName}.
      */
     private void setFileName(String fileName) {
-        //TODO
+       this.fileName=fileName;
     }
 
     /**
@@ -108,8 +112,7 @@ public class Level {
      * @return Current value of the attribute {@code fileName}
      */
     public String getFileName() {
-        //TODO
-        return null;
+        return this.fileName;
     }
 
     /**
@@ -118,8 +121,7 @@ public class Level {
      * @return The value of the attribute {@code lives}.
      */
     public int getLives() {
-        //TODO
-        return 0;
+        return this.lives;
     }
 
     /**
@@ -137,14 +139,14 @@ public class Level {
      * Increases 1 the number of lives.
      */
     public void increaseLives() {
-        //TODO
+        this.lives+=1;
     }
 
     /**
      * Decreases 1 the number of lives as long as the number of lives is not zero.
      */
     public void decreaseLives() {
-        //TODO
+        this.lives-=1;
     }
 
     /**
@@ -241,8 +243,7 @@ public class Level {
      * @return The current value of the attribute {@code width}.
      */
     public int getWidth() {
-        //TODO
-        return 0;
+        return this.width;
     }
 
     /**
@@ -252,7 +253,10 @@ public class Level {
      * @throws LevelException When {@code width} is less than {@code MIN_WIDTH}.
      */
     private void setWidth(int width) throws LevelException {
-        //TODO
+       if(width<MIN_WIDTH){
+           throw new LevelException(LevelException.SIZE_ERROR );
+       }else this.width=width;
+
     }
 
     /**
@@ -261,8 +265,7 @@ public class Level {
      * @return The current value of the attribute {@code height}.
      */
     public int getHeight() {
-        //TODO
-        return 0;
+        return this.height;
     }
 
     /**
@@ -272,7 +275,10 @@ public class Level {
      * @throws LevelException When {@code height} is less than {@code MIN_HEIGHT}.
      */
     private void setHeight(int height) throws LevelException {
-        //TODO
+        if(width<MIN_HEIGHT){
+            throw new LevelException(LevelException.SIZE_ERROR);
+        }else this.height=height;
+
     }
 
     /**
@@ -281,8 +287,7 @@ public class Level {
      * @return The current value of the attribute {@code mapItemList}.
      */
     private List<MapItem> getMapItemList() {
-        //TODO
-        return null;
+        return mapItemList;
     }
 
     /**
@@ -291,8 +296,7 @@ public class Level {
      * @return Iterator of the attribute {@code mapItemList}.
      */
     public Iterator<MapItem> getMapItemListIterator() {
-        //TODO
-        return null;
+        return mapItemList.iterator();
     }
 
     /**
@@ -303,7 +307,12 @@ public class Level {
      * @return If any, the item which is the position (x,y). Otherwise, {@code null}.
      */
     public MapItem getMapItem(int x, int y) {
-        //TODO
+
+        for (MapItem item : mapItemList){
+            if(item.getPosition().equals(new Position(x,y)) ){
+                return item;
+            }
+        }
         return null;
     }
 
@@ -315,7 +324,15 @@ public class Level {
      * @throws NullPointerException When {@code position} is {@code null}.
      */
     public MapItem getMapItem(Position position) throws NullPointerException {
-        //TODO
+        if(position==null){
+            throw new NullPointerException();
+        }
+
+        for (MapItem item : mapItemList){
+            if(item.getPosition().equals(position)){
+                return item;
+            }
+        }
         return null;
     }
 
@@ -325,7 +342,10 @@ public class Level {
      * @param item Item which we want to add.
      */
     public void addMapItem(MapItem item) {
-        //TODO
+        if(item == null){
+            return;
+        }
+        this.mapItemList.add(item);
 
     }
 
@@ -335,7 +355,7 @@ public class Level {
      * @param item Item which we want to remove.
      */
     public void removeMapItem(MapItem item) {
-        //TODO
+        this.mapItemList.remove(item);
     }
 
     /**
@@ -344,8 +364,8 @@ public class Level {
      * @return The current value of the attribute {@code ghostList}.
      */
     public List<Ghost> getGhostList() {
-        //TODO
-        return null;
+
+        return this.ghostList;
     }
 
     /**
@@ -354,8 +374,7 @@ public class Level {
      * @return The current value of the attribute {@code score}.
      */
     public int getScore() {
-        //TODO
-        return 0;
+        return this.score;
     }
 
     /**
@@ -364,7 +383,7 @@ public class Level {
      * @param points Number to add to the attribute {@code score}.
      */
     public void addPoints(int points) {
-        //TODO
+        if (points>0) this.score += points;
     }
 
     /**
@@ -373,8 +392,7 @@ public class Level {
      * @return The current value of the attribute {@code pacman}.
      */
     public Pacman getPacman() {
-        //TODO
-        return null;
+        return this.pacman;
     }
 
     /**
@@ -399,7 +417,13 @@ public class Level {
      * @return {@code true} if the position is pathable. Otherwise, {@code false}.
      */
     public boolean isPathable(Position position) {
-        //TODO
+
+        for(MapItem item : mapItemList){
+            if(item.getPosition().equals(position)
+                    && item.isPathable()){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -408,18 +432,29 @@ public class Level {
      * Sets the behaviour of all the ghosts in the level to FRIGHTENED.
      */
     public void setGhostsFrightened() {
-        //TODO
+        for(Ghost ghost:ghostList){
+            ghost.setBehaviour(Behaviour.FRIGHTENED);
+        }
     }
 
     /**
      * Checks if the level was finished. This happens when all the objects
-     * that are {@link Scorable} and {@link Wall} have been picked.
+     * that are {@link Scorable} and {@link Pickable} have been picked.
      *
      * @return {@code true} if the level was finished/won. Otherwise, {@code false}.
      */
     public boolean hasWon() {
-        //TODO
+        List<MapItem> listItems = new ArrayList<>();
+        for(MapItem item : mapItemList){
+            if(item instanceof Dot || item instanceof Energizer){
+                listItems.add(item);
+            }
+        }
+        if(listItems.isEmpty()){
+            return true;
+        }
         return false;
+
     }
 
     /**

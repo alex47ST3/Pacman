@@ -1,6 +1,7 @@
 package edu.uoc.pacman.model.entities.items;
 
 import edu.uoc.pacman.model.entities.Scorable;
+import edu.uoc.pacman.model.entities.characters.ghosts.Ghost;
 import edu.uoc.pacman.model.utils.Position;
 import edu.uoc.pacman.model.utils.Sprite;
 import org.junit.jupiter.api.*;
@@ -85,7 +86,7 @@ class LifeTest {
 
         assertEquals("edu.uoc.pacman.model.entities.items", ownClass.getPackageName());
         assertTrue(MapItem.class.isAssignableFrom(ownClass));
-        assertTrue(Wall.class.isAssignableFrom(ownClass));
+        assertTrue(Pickable.class.isAssignableFrom(ownClass));
     }
 
 

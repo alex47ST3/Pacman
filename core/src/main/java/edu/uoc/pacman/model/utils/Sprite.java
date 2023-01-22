@@ -2,18 +2,18 @@ package edu.uoc.pacman.model.utils;
 
 public enum Sprite {
     BLINKY('B', "images/blinky.png"),
-    CLYDE('P', "images/pinky.png"),
-    DOT('I', "images/inky.png"),
-    ENERGIZER('C', "images/clyde.png"),
-    INKY('.', "images/dot.png"),
-    LIFE('0', "images/energizer.png"),
-    PACMAN_DOWN('#', "images/wall.png"),
-    PACMAN_LEFT(' ', "images/path.png"),
-    PACMAN_RIGHT('L', "images/life.png"),
-    PACMAN_UP('V', "images/pac_down.png"),
-    PATH('^', "images/pac_up.png"),
-    PINKY('<', "images/pac_right.png"),
-    WALL('>', "images/pac_left.png");
+    PINKY('P', "images/pinky.png"),
+    INKY('I', "images/inky.png"),
+    CLYDE('C', "images/clyde.png"),
+    DOT('.', "images/dot.png"),
+    ENERGIZER('0', "images/energizer.png"),
+    WALL('#', "images/wall.png"),
+    PATH(' ', "images/path.png"),
+    LIFE('L', "images/life.png"),
+    PACMAN_DOWN('V', "images/pac_down.png"),
+    PACMAN_UP('^', "images/pac_up.png"),
+    PACMAN_RIGHT('<', "images/pac_right.png"),
+    PACMAN_LEFT('>', "images/pac_left.png");
 
     private final String imageSrc;
     private final char symbol;
