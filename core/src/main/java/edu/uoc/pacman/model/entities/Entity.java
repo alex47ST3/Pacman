@@ -8,7 +8,7 @@ public abstract class Entity {
     private Position position;
     private Sprite sprite;
 
-    protected Entity(boolean pathable, Position position, Sprite sprite) {
+    protected Entity(Position position, boolean pathable,  Sprite sprite) {
         this.pathable = pathable;
         this.position = position;
         this.sprite = sprite;
@@ -34,7 +34,7 @@ public abstract class Entity {
         return sprite;
     }
 
-    public void setSprite(Sprite sprite) {
+    protected void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
 }

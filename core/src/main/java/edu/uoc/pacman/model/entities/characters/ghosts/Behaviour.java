@@ -5,7 +5,7 @@ public enum Behaviour {
     CHASE(20),
     FRIGHTENED(30),
     SCATTER(10),
-    INACTIVE(0);
+    INACTIVE(5);
 
     private int duration;
 
@@ -21,5 +21,7 @@ public enum Behaviour {
     public String toString(){
         return this.name() + ":" + this.getDuration();
     }
+
+
 
 }

@@ -1,14 +1,15 @@
 package edu.uoc.pacman.model.entities.items;
 
+import edu.uoc.pacman.model.entities.Scorable;
 import edu.uoc.pacman.model.utils.Position;
 import edu.uoc.pacman.model.utils.Sprite;
 
-public class Energizer extends MapItem{
+public class Energizer extends MapItem implements Pickable, Scorable {
     private boolean picked;
     private static final int POINTS = 5;
 
     public Energizer(Position position) {
-        super(true, position, Sprite.ENERGIZER);
+        super( position,true, Sprite.ENERGIZER);
     }
 
     public int getPoints(){

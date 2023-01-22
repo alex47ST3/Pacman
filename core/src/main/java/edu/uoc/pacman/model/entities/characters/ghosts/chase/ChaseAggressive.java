@@ -3,9 +3,9 @@ package edu.uoc.pacman.model.entities.characters.ghosts.chase;
 import edu.uoc.pacman.model.entities.characters.ghosts.Ghost;
 import edu.uoc.pacman.model.utils.Position;
 
-public class ChaseAgressive implements ChaseBehaviour{
+public class ChaseAggressive implements ChaseBehaviour{
 
-    public ChaseAgressive() {
+    public ChaseAggressive() {
     }
 
     @Override

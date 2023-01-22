@@ -6,6 +6,6 @@ import edu.uoc.pacman.model.utils.Sprite;
 public class Wall extends MapItem{
 
     public Wall(Position position) {
-        super(false, position, Sprite.WALL);
+        super( position, false, Sprite.WALL);
     }
 }

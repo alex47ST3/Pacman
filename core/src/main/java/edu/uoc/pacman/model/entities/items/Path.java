@@ -6,6 +6,6 @@ import edu.uoc.pacman.model.utils.Sprite;
 public class Path extends MapItem {
 
     public Path(Position position) {
-        super(true, position, Sprite.PATH);
+        super( position,true, Sprite.PATH);
     }
 }

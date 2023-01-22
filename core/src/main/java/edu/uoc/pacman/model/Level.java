@@ -119,7 +119,7 @@ public class Level {
      */
     public int getLives() {
         //TODO
-        return null;
+        return 0;
     }
 
     /**
@@ -242,7 +242,7 @@ public class Level {
      */
     public int getWidth() {
         //TODO
-        return null;
+        return 0;
     }
 
     /**
@@ -262,6 +262,7 @@ public class Level {
      */
     public int getHeight() {
         //TODO
+        return 0;
     }
 
     /**
@@ -325,7 +326,7 @@ public class Level {
      */
     public void addMapItem(MapItem item) {
         //TODO
-        return null;
+
     }
 
     /**

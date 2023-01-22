@@ -15,7 +15,7 @@ public abstract class Character extends Entity implements Movable, Hitable{
 
     protected Character(Position position, Sprite sprite, Direction direction, Level level) {
 
-        super(true, position, sprite);
+        super(position, true, sprite);
 
         if(position==null){
             position = new Position(0,0);
@@ -51,10 +51,12 @@ public abstract class Character extends Entity implements Movable, Hitable{
     public Direction getDirection() {
         return direction;
     }
-
     @Override
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        if (direction != null){
+            this.direction = direction;
+        }
+
     }
 
     public int getDuration() {
@@ -83,9 +85,7 @@ public abstract class Character extends Entity implements Movable, Hitable{
 
     public void reset(){
         setPosition(startPosition);
-        setDirection(Direction.UP);
         alive();
-        setDuration(0);
     }
 
     @Override
