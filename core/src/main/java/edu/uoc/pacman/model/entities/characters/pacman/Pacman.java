@@ -72,6 +72,9 @@ public class Pacman extends Character {
     @Override
     public void setDirection(Direction direction) {
         super.setDirection(direction);
+        if (direction == null){
+            return;
+        }
 
         switch (direction) {
             case UP -> this.setSprite(Sprite.PACMAN_UP);
