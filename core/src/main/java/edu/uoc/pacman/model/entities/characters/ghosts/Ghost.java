@@ -9,6 +9,8 @@ import edu.uoc.pacman.model.utils.Direction;
 import edu.uoc.pacman.model.utils.Position;
 import edu.uoc.pacman.model.utils.Sprite;
 
+import java.util.ArrayList;
+
 public abstract class Ghost extends Character implements Scorable {
     private Behaviour behaviour;
     protected ChaseBehaviour chaseBehaviour;
@@ -75,21 +77,26 @@ public abstract class Ghost extends Character implements Scorable {
 
         double minDistance = Double.MAX_VALUE;
         Direction newDirection = this.getDirection();
-        Position newPosition;
+        Position newPosition = this.getPosition();
+        Position targetPosition = this.getTargetPosition();
+
 
         for (Direction direction : Direction.values()) {
 
             int newX = this.getPosition().getX() + direction.getX();
             int newY = this.getPosition().getY() + direction.getY();
-            newPosition = new Position(newX, newY);
-            double newDistance = newPosition.distance(this.getTargetPosition());
+            Position nextPosition = new Position(newX, newY);
+            double nextDistance = this.getTargetPosition().distance(nextPosition);
 
-            if (newDistance <= minDistance
-                    && this.getLevel().isPathable(newPosition)
+            if (nextDistance <= minDistance
+                    && this.getLevel().isPathable(nextPosition)
                     && !this.getDirection().opposite().equals(direction)
+
             ) {
-                minDistance = newDistance;
+                minDistance = nextDistance;
                 newDirection = direction;
+                newPosition = nextPosition;
+
             }
         }
 
@@ -105,23 +112,25 @@ public abstract class Ghost extends Character implements Scorable {
 
     @Override
     public boolean hit() {
-        Position pacmanPosition = this.getLevel().getPacman().getPosition();
-        State pacmanState = this.getLevel().getPacman().getState();
 
-        if (this.getPosition().equals(pacmanPosition)
-                && !this.getBehaviour().equals(Behaviour.INACTIVE)
-                && (this.getBehaviour().equals(Behaviour.FRIGHTENED)
-                || pacmanState.equals(State.INVINCIBLE))
-        ){
-            this.kill();
-            return true;
-        } else if (this.getPosition().equals(pacmanPosition)
-                && !this.getBehaviour().equals(Behaviour.INACTIVE)
-                && pacmanState.equals(State.NORMAL)
-        ) {
-            this.getLevel().getPacman().kill();
-            return true;
-        }else return false;
+        if (!this.getBehaviour().equals(Behaviour.INACTIVE)) {
+            Position pacmanPosition = this.getLevel().getPacman().getPosition();
+            State pacmanState = this.getLevel().getPacman().getState();
+
+            if (this.getPosition().equals(pacmanPosition)
+                    && (this.getBehaviour().equals(Behaviour.FRIGHTENED)
+                    || pacmanState.equals(State.INVINCIBLE))
+            ) {
+                this.kill();
+                return true;
+            } else if (this.getPosition().equals(pacmanPosition)
+                    && pacmanState.equals(State.NORMAL)
+            ) {
+                this.getLevel().getPacman().kill();
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

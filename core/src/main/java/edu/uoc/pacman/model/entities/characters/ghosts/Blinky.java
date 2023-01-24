@@ -11,7 +11,7 @@ public class Blinky extends Ghost {
     private static final int POINTS = 400;
 
 
-    Blinky(Position startPosition, Direction direction,
+    public Blinky(Position startPosition, Direction direction,
            Behaviour behaviour, Level level) {
 
         super(startPosition, new Position(level.getWidth(), -1),

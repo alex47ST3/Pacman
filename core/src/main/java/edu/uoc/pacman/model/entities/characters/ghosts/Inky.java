@@ -11,7 +11,7 @@ public class Inky extends Ghost{
     private static final int POINTS = 200;
 
 
-    Inky(Position startPosition, Direction direction,
+    public Inky(Position startPosition, Direction direction,
           Behaviour behaviour, Level level) {
 
         super(startPosition, new Position(level.getWidth(), level.getHeight()),

@@ -10,7 +10,7 @@ public class Clyde extends Ghost {
     private static final int POINTS = 100;
 
 
-    Clyde(Position startPosition, Direction direction,
+    public Clyde(Position startPosition, Direction direction,
           Behaviour behaviour, Level level) {
 
         super(startPosition, new Position(-1, level.getHeight()),

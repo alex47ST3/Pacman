@@ -17,8 +17,8 @@ public class ChaseAmbush implements ChaseBehaviour {
         Position pacmanPosition = ghost.getLevel().getPacman().getPosition();
         Direction pacmanDirection = ghost.getLevel().getPacman().getDirection();
 
-        int targetX = pacmanPosition.getX() + pacmanDirection.getX() * TILES_OFFSET;
-        int targetY = pacmanPosition.getY() + pacmanDirection.getY() * TILES_OFFSET;
+        int targetX = pacmanPosition.getX() - pacmanDirection.getX() * TILES_OFFSET;
+        int targetY = pacmanPosition.getY() - pacmanDirection.getY() * TILES_OFFSET;
 
         return new Position(targetX, targetY);
     }

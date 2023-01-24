@@ -43,8 +43,8 @@ public class Position {
         if (other == null) {
             return 0;
         }
-        int distanceX = this.getX() - other.getX();
-        int distanceY = this.getY() - other.getY();
+        int distanceX = other.getX() - this.getX() ;
+        int distanceY =  other.getY() - this.getY();
         return Math.sqrt(Math.pow( distanceX, 2) + Math.pow(distanceY, 2));
     }
 
